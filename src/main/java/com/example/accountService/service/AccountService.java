@@ -24,7 +24,7 @@ public class AccountService {
     }
 
     public AccountDTO createAccount(AccountDTO accountDTO) {
-        // Verify customer exists
+
         Map<String, Object> customer = restTemplate.getForObject(
                 customerServiceUrl + accountDTO.getCustomerId(),
                 Map.class
@@ -34,7 +34,7 @@ public class AccountService {
             throw new RuntimeException("Customer not found");
         }
 
-        // Check if customer already has this type of account
+
         if (accountRepository.findByCustomerIdAndType(
                         accountDTO.getCustomerId(),
                         accountDTO.getType())
